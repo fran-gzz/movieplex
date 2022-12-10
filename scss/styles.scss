@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Poppins:wght@200;300;400;600;700;800;900&display=swap");
+
+@import './abstracts/variables';
+@import './abstracts/mixins';
+@import './abstracts/utilities';
+
+@import './base/base';
+
+@import './layout/navbar';
+@import './layout/card';
+
+@import './pages/home';
+
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (min-width: 900px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

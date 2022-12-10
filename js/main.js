@@ -15,10 +15,16 @@
         * Simulación del pago
 */
 
+
+
+
+
 // Funciones para establecer nombre de usuario y contraseñañ
 const setUsername = () => user = prompt('Nombre de usuario');
-const setPassword = () => password = prompt('Escriba su contraseña');
+const setPassword = () => password = prompt('Escriba su contraseña. Debe tener al menos 8 carácteres.');
     
+
+
 
 // Función para establecer un usuario
 const setUser = () => {
@@ -36,10 +42,27 @@ const setUser = () => {
         setUsername();
         setPassword();
     }
+    
 }
+
+
+
+const arrayPeliculas = [
+    {
+        title:  'Black Panther'
+    },
+    {
+        title:  'Black Adam'
+    },
+    {
+        title:  'One Piece'
+    },
+]
+console.log(arrayPeliculas)
 
 // Función de lista de peliculas
 const peliculas = () => {
+    
     let listaPeliculas = parseInt(prompt(`Seleccione un número para continuar.
         1 - Black Panther
         2 - One Piece Red
@@ -58,17 +81,15 @@ const peliculas = () => {
 }
 
 const app = () => {
-    // Llamado a la función para generar un usuario
-    setUser();
 
     // Saludo
-    alert(`Hola, ${user}! Bienvenido/a Movieplex Cinema.`);
+    alert(`Hola! Bienvenido/a Movieplex Cinema.`);
 
     // Menu de opciones
-    let entrada = prompt(`${user}, seleccione un número para continuar.
+    let entrada = prompt(`Seleccione un número para continuar.
     1 - Lista peliculas
     2 - Ver promociones
-    3 - Reestablecer nombre de usuario y contraseña
+    3 - Iniciar sesión
     0 - Salir
     `);
     while( entrada != '0' ) {
@@ -86,7 +107,7 @@ const app = () => {
                 alert('Opción no soportada');
                 break;
             }
-        entrada = prompt(`${user}, seleccione un número para continuar.
+        entrada = prompt(`seleccione un número para continuar.
         1 - Lista peliculas
         2 - Ver promociones
         3 - Reestablecer nombre de usuario y contraseña
@@ -97,3 +118,15 @@ const app = () => {
 
 
 app();
+
+
+
+
+// Color en navbar en scrollY
+
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => 
+    window.scrollY >= 50
+        ? nav.classList.add('active-nav')
+        : nav.classList.remove('active-nav')
+);
