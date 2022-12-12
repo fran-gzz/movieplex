@@ -107,6 +107,7 @@ const peliculas = () => {
                 break;
             case 'no':
                 alert(`Vas a comprar ${cantidad} entrada/s para ver ${movieById.title}. El precio final es de $${precio}`)
+                alert('Gracias por su compra')
                 break;
             default:
                 alert('Opción no soportada');
