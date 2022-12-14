@@ -6,12 +6,11 @@
     padding: 0 1rem;
     margin: 0 auto;
     @include transition;
+    background-color: $color__black--1;
 }
 
 #check { display: none; }
 
-/* Add background-color on scroll */
-.active-nav { background-color: $color__primary; }
 
 .navigator {
     height: 70px;
@@ -64,7 +63,7 @@
     .navigator {
         flex-direction: row-reverse;
         &__wrapper {
-            background-color: $color__primary;
+            background-color: $color__black--1;
             position: fixed;
             flex-direction: column;
             top: 0;
@@ -79,7 +78,6 @@
         &__item {
             display: block;
             margin: 1rem 0;
-            font-size: 20px;
             color: $color__white--1;
             &::after {
                 content: '';

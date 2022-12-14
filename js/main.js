@@ -161,7 +161,7 @@ const app = () => {
 }
 
 // Inicialización de la función
-app();
+//app();
 
 
 // Color en navbar al scrollear
