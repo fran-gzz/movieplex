@@ -15,6 +15,9 @@ html {
 body {
     font-size: 1.2em;
     font-family: $font--1;
+    @include responsive( desktop ) {
+        font-size: .8em;
+    }
 }
 
 main { background-color: $color__white--1; }

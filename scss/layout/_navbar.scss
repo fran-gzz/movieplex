@@ -13,7 +13,7 @@
 
 
 .navigator {
-    height: 70px;
+    height: 55px;
     color: $color__white--1;
     @include flex(row, space-between, center);
     &__wrapper {
@@ -23,7 +23,7 @@
     &__item {
         @include transition;
         position: relative;
-        padding: 1rem;
+        padding: .6rem;
         &::after {
             content: '';
             background-color: $color__white--1;
@@ -43,7 +43,7 @@
     &__item--cta {
         background-color: $color__white--1;
         color: $color__black--1;
-        border-radius: $radius;
+        border-radius: 5px;
         @include transition;
         &:hover {
             background-color: $color__primary--darker;

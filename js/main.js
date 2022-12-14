@@ -162,12 +162,3 @@ const app = () => {
 
 // Inicialización de la función
 //app();
-
-
-// Color en navbar al scrollear
-const nav = document.getElementById('navbar');
-window.addEventListener('scroll', () =>
-    window.scrollY >= 50
-        ? nav.classList.add('active-nav')
-        : nav.classList.remove('active-nav')
-);

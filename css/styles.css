@@ -15,8 +15,11 @@
 /* Logo */
 .logo {
   cursor: pointer;
-  font: normal 500 1.2em "Poppins", sans-serif;
+  font: normal 500 1.6em "Poppins", sans-serif;
   color: #fff; }
+  @media screen and (min-width: 992px) {
+    .logo {
+      font-size: 1.2em; } }
 
 /* Button */
 .button {
@@ -50,6 +53,9 @@ html {
 body {
   font-size: 1.2em;
   font-family: "Poppins", sans-serif; }
+  @media screen and (min-width: 992px) {
+    body {
+      font-size: .8em; } }
 
 main {
   background-color: #fff; }
@@ -77,7 +83,7 @@ ul {
   display: none; }
 
 .navigator {
-  height: 70px;
+  height: 55px;
   color: #fff;
   display: flex;
   flex-direction: row;
@@ -92,7 +98,7 @@ ul {
   .navigator__item {
     transition: all 0.2s ease-in-out;
     position: relative;
-    padding: 1rem; }
+    padding: .6rem; }
     .navigator__item::after {
       content: '';
       background-color: #fff;
@@ -110,7 +116,7 @@ ul {
   .navigator__item--cta {
     background-color: #fff;
     color: #111;
-    border-radius: 0.5rem;
+    border-radius: 5px;
     transition: all 0.2s ease-in-out; }
     .navigator__item--cta:hover {
       background-color: #3c096c;
