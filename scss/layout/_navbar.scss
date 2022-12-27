@@ -13,9 +13,12 @@
 
 
 .navigator {
-    height: 55px;
+    height: 70px;
     color: $color__white--1;
     @include flex(row, space-between, center);
+    @include responsive( desktop ) {
+        height: 55px;
+    }
     &__wrapper {
         gap: $gap;
         @include flex(row, unset, center);

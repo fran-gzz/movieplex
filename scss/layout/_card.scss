@@ -1,11 +1,20 @@
 .movie {
-    box-shadow: 2px 10px 10px rgba(0, 0, 0, .4);
-    border-radius: 1rem;
-    overflow: hidden;
-}
-.movie__image {
-    border-radius: .5rem;
-    height: 285px;
-    width: 190px;
-    object-fit: cover;
+    @include transition;
+    cursor: pointer;
+    &:hover {
+        transform: scale(105%);
+    }
+    &__image {
+        box-shadow: 2px 10px 10px rgba(0, 0, 0, .4);
+        height: 285px;
+        width: 100%;
+        object-fit: cover;
+    }
+    &__title {
+        font-size: 1em;
+        text-align: center;
+        margin: .2rem 0;
+        color: $color__white--2;
+        font-weight: 500;
+    }
 }

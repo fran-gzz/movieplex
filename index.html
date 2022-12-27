@@ -11,7 +11,7 @@
 </head>
 <body>
     <header id='navbar'>
-        <nav class='container__1200px navigator'>
+        <nav class='container navigator'>
             <!--Burguer Menu-->
             <input type="checkbox" id="check">
             <label for="check" class="checkbtn">
@@ -41,32 +41,77 @@
                     <a class='navigator__item' href='./pages/nosotros.html'> Complejos </a>
                 </li>
                 <li>
-                    <a class='navigator__item navigator__item--cta' href='./pages/cursos.html'> Iniciar Sesión </a>
+                    <a class='navigator__item navigator__item--cta' id='login-button' href='./pages/login.html'> Iniciar Sesión </a>
                 </li>
             </ul>
         </nav>
     </header>
     
+
+<!--     
     <section class="hero">
         <article class="hero__content">
-            <h1 class="hero__title">En construcción...</h1>
+            <!- <h1 class="hero__title">Acá habrá un slider...</h1> ->
         </article>
         <div class="hero__background"></div>
-    </section>
-    <section class="grid container__1000px">
-        <div class="movie">
-            <img src="./img/Black-Panther-Wakanda-Forever.webp" alt="" class="movie__image">
-            <h2 class='movie__title'>Wakanda Forever</h2>
-        </div>
-        <div class="movie">
-            <img src="./img/One_Piece_Film_Red.webp" alt="" class="movie__image">
-            <h2 class='movie__title'>One Piece Red</h2>
-        </div>
-        <div class="movie">
-            <img src="./img/Black_Adam_-_Poster_Final.webp" alt="" class="movie__image">
-            <h2 class='movie__title'>Black Adam</h2>
+    </section> 
+-->
+
+    
+
+    <section class="section">
+        <h2 class="section__title">Cartelera</h2>
+        <div class="section__grid" id="grid"> 
+            <!--Datos inyectados en javascript-->
         </div>
     </section>
+
+    <p id="username-display"></p>
+
+    <section class="modal" id="modal">
+        <div class="modal__container">
+            <div class="modal__body">
+                
+                <article class="tickets">
+                    <div class="tickets__container">
+                        <h2 class="tickets__title">
+                            Seleccione el formato de la pelicula:
+                        </h2>
+                        
+                        <div class="tickets__type">
+                            <div id="select"></div>
+                            <p id="price"></p>
+                        </div>
+                        
+                        <h2 class="tickets__title">
+                            Seleccione la cantidad de entradas:
+                        </h2>
+                        <div class="button__container">
+                            <button id="decrement" class="button">-</button>
+                            <input  id="quantity" type="number" value="0" min="0" readonly/>
+                            <button id="increment" class="button">+</button>
+                        </div>
+                        <p class="tickets__subtotal" id="subtotal">Subtotal: $0</p>
+
+                        <a href="#" class="button button--primary">Pagar</a>
+                    </div>
+                </article>
+
+
+
+
+                <div class="modal__info">
+                    <!--Datos inyectados en javascript-->
+                </div> 
+            </div>
+            <button class="modal__close">
+                <img src="https://img.icons8.com/ios-glyphs/30/ffffff/multiply.png"/>
+            </button>
+        </div>
+    </section>
+
+    
+    
     <footer class="footer">
         <nav class="footer__container">
             <a href="./index.html">Logo</a>

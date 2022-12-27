@@ -1,26 +1,21 @@
 
 /****   Globals    ****/
-html {
-    font-size: 100%;
-    box-sizing: border-box;
-}
 
 *, 
 *:before, 
 *:after {
-    box-sizing: inherit;
+    box-sizing: border-box;
     @include reset-pm();
 }
 
 body {
     font-size: 1.2em;
     font-family: $font--1;
-    @include responsive( desktop ) {
+    background-color: $color__black--2;
+    @include responsive( tablet ) {
         font-size: .8em;
     }
 }
-
-main { background-color: $color__white--1; }
 
 a {
     color: inherit;

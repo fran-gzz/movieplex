@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Estilos de usuario -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <title>Movieplex Cinemas</title>
+</head>
+<body>
+    <header id='navbar'>
+        <nav class='container navigator'>
+            <!--Burguer Menu-->
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+                <svg
+                xmlns="http://www.w3.org/2000/svg" 
+                x="0px" y="0px" 
+                width="40" height="40"
+                viewBox="0 0 30 30"
+                style=" fill:#ffffff;"
+            >
+                <path d="M 3 7 A 1.0001 1.0001 0 1 0 3 9 L 27 9 A 1.0001 1.0001 0 1 0 27 7 L 3 7 z M 3 14 A 1.0001 1.0001 0 1 0 3 16 L 27 16 A 1.0001 1.0001 0 1 0 27 14 L 3 14 z M 3 21 A 1.0001 1.0001 0 1 0 3 23 L 27 23 A 1.0001 1.0001 0 1 0 27 21 L 3 21 z"></path>
+                </svg>
+            </label>            
+
+            <a href='../index.html' class='logo'>
+                <strong>movieplex</strong>
+            </a>
+
+            <ul class='navigator__wrapper'>
+                <li>
+                    <a class='navigator__item' href='../index.html'> Inicio </a>
+                </li>
+                <li>
+                    <a class='navigator__item' href='./pages/blog.html'> Promociones </a>
+                </li>
+                <li>
+                    <a class='navigator__item' href='./pages/nosotros.html'> Complejos </a>
+                </li>
+                <li>
+                    <a class='navigator__item navigator__item--cta' href='./pages/login.html'> Iniciar Sesión </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="section">
+        <h2 class="section__title">Iniciar Sesión</h2>
+        <form id="login-form">
+            <label for="username">Nombre de usuario:</label>
+            <input type="text" id="username" name="username">
+            <br>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password">
+            <br>
+            <button type="submit">Iniciar sesión</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <nav class="footer__container">
+            <a href="./index.html">Logo</a>
+            <ul class="footer__nav">
+                <li>
+                    <a href="#">Facebook</a>
+                
+                </li>
+                <li>
+                    <a href="#">Instagram</a>
+                </li>
+                <li>
+                    <a href="#">Linkedin</a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
+
+    <script src="../js/login.js"></script>
+
+</body>
+</html>
