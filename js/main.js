@@ -40,60 +40,7 @@ loginButton.addEventListener('click', () => {
 
 
 
-// Array de peliculas, en el futuro espero poder cambiarlo por la api de themoviedatabase
-const movies = [
-    {
-        id: 1,
-        title:  'Black Panther',
-        url: 'img/blackPanther.webp',
-        genre: 'Acción',
-        restriction: '+13',
-        lang:'Español, Inglés Subtitulado',
-        release: '10/11/2022',
-        format: ['2D', '3D'],
-        trailerURL: 'BPjbiZQmBI4',
-        duration: 165,
-        description: 'Una secuela que seguirá explorando el incomparable mundo de Wakanda y todos los ricos y variados personajes presentados en la película de 2018.'
-    },
-    {   id: 2,
-        title:  'Black Adam',
-        url: 'img/blackAdam.webp',
-        genre: 'Acción',
-        restriction: '+13',
-        lang:'Español, Inglés Subtitulado',
-        release: '20/10/2022',
-        format: ['2D', '3D', '4D'],
-        trailerURL: 'a1mcS4tKGNg',
-        duration: 125,
-        description: 'Unos arqueólogos liberan de su tumba a Black Adam, quien llevaba 5000 años preso tras haber recibido los poderes de los dioses. De nuevo entre los humanos, Black Adam se dispone a imponer su justicia, muy diferente a la del mundo en el que despertó.'
-    },
-    {
-        id: 3,
-        title:  'Avatar 2',
-        url: 'img/avatar.webp',
-        genre: 'Ciencia Ficción',
-        restriction: '+13',
-        lang:'Español, Inglés Subtitulado',
-        release: '14/12/2022',
-        format: ['2D', '3D', '4D', 'IMAX'],
-        trailerURL: 'bDFKIs4v0B4',
-        duration: 190,
-        description: 'Jake Sully y Ney`tiri han formado una familia y hacen todo lo posible por permanecer juntos. Sin embargo, deben abandonar su hogar y explorar las regiones de Pandora cuando una antigua amenaza reaparece.'
-    },
-    {
-        id: 4,
-        title:  'One Piece',
-        url: 'img/onePiece.webp',
-        genre: 'Animada',
-        restriction: '+13',
-        lang:'Español, Japonés Subtitulado',
-        release: '06/07/2022',
-        format: ['2D', '3D'],
-        trailerURL: '89JWRYEIG-s',
-        duration: 93,
-        description: 'Uta, la cantante más popular del mundo, va a presentarse en un escenario y revelar su apariencia por primera vez. Luffy y sus amigos acuden al concierto y se dan cuenta de que la voz de Uta es capaz de cambiarlo todo.'
-    },
-]
+
 
 // Objeto de precios, responde al array 'format' dentro del array de peliculas
 const pricesObject = {
@@ -104,98 +51,292 @@ const pricesObject = {
 };
 
 // Genera tarjetas utilizando el array de peliculas
+
+// movies.forEach( movie => {
+//     billboard.innerHTML += `
+//         <div class="movie"id=${movie.id}>
+//             <img src=${movie.url} alt="Poster de ${movie.title}" class="movie__image">
+//             <h2 class='movie__title'>${movie.title}</h2>
+//         </div>
+//     `
+// })
+
+
+
+
+
+
+
+const API_KEY   = '2aa7bc7b6c9ccd4b3002154d5f9176ee'
+const API_URL   = 'https://api.themoviedb.org/3/movie'
+const IMAGE_URL = 'https://image.tmdb.org/t/p/w1280'
+
+
+
+
+
+
+
+
+const useFetch = async ( endpoint ) => {
+    const response = await fetch( endpoint );
+    return await response.json();
+}
+
+
+const getCertification = async ( movieId ) => {
+    const endpoint = `${ API_URL }/${ movieId }/release_dates?api_key=${ API_KEY }`;
+    try {
+        const data = await useFetch( endpoint )
+        const certification = 
+            data.results.find(result => result.iso_3166_1 === 'US')
+                ? data.results.find(result => result.iso_3166_1 === 'US').release_dates[0].certification
+                : ''
+        return certification;
+    } 
+    catch (error) {
+        console.error(error);
+    }
+}
+
+ const getMovieTrailer = async( movieId ) => {
+    const endpoint = `${ API_URL }/${ movieId }/videos?api_key=${ API_KEY }`;
+    const data = await useFetch( endpoint );
+    return data.results[0].key;
+}
+
+const getMovieCredits = async( movieId ) => {
+    const endpoint = `${ API_URL }/${ movieId }/credits?api_key=${ API_KEY }`;
+    const data = await useFetch( endpoint );
+    return data
+}
+
+
+
+
+const fetchMovies = async () => {
+    const endpoint = `${API_URL}/now_playing?api_key=${API_KEY}&language=es-MX`
+    try {
+        const data = await useFetch( endpoint );
+        return movies = data.results.slice(0, 18);
+    }
+    catch ( error ) {
+        console.log(error);
+    }
+
+}
+
+
+
+
+
+
+
+
 const billboard = document.getElementById('grid')
-movies.forEach( movie => {
-    billboard.innerHTML += `
-        <div class="movie"id=${movie.id}>
-            <img src=${movie.url} alt="Poster de ${movie.title}" class="movie__image">
-            <h2 class='movie__title'>${movie.title}</h2>
+
+const main = async () => {
+    const movies = await fetchMovies();
+    movies.forEach( movie => {
+        billboard.innerHTML += `
+         <div class="card" data-id='${movie.id}'>
+             <img src=${ IMAGE_URL + movie.poster_path} alt="Poster de ${movie.title}" class="card__image">
+             <h2 class='card__title'>${movie.title}</h2>
         </div>
     `
-})
+    })
+    const movieCards = document.querySelectorAll('.card')
+    movieCards.forEach( movieCard => {
+        movieCard.addEventListener('click', () => createModal( movieCard ))
+    })
+}
+
+main();
+
+
+// Genera el modal al hacer click en cualquier tarjeta
+// movies.forEach( movie => {
+//     var movieElement = document.getElementById(movie.id);
+//     movieElement.addEventListener('click', ()  => createModal(movie) );
+// });
+
+
+
+
+
+const getMovieById = async ( id ) => {
+    const endpoint = `${API_URL}/${id}?api_key=${API_KEY}&language=es-MX`
+    return data = useFetch( endpoint );
+}
+
+
 
 
 
 // Funciones para crear el select, y las opciones dentro del mismo
-const createOptions = formats  => {
-    let options = "";
-    formats.forEach( format => options += `<option value="${ format }">${ format }</option>` );
-    return options;
-};
+// const createOptions = formats  => {
+//     let options = "";
+//     formats.forEach( format => options += `<option value="${ format }">${ format }</option>` );
+//     return options;
+// };
 
-const createSelect = movie =>  `<select id='ticketType'>${ createOptions(movie.format) }</select>`;
+// const createSelect = movie =>  `<select id='ticketType'>${ createOptions(movie.format) }</select>`;
 
 
-const createModal = ( movie ) => {
 
-    //Llamado al id modal, para ser utilizado dentro de la funcion showModal.
-    const modal = document.getElementById('modal');
+
+
+//Llamado al id modal, para ser utilizado dentro de la funcion showModal.
+const modal = document.getElementById('modal');
+
+
+const createModal = async ( movieCard ) => {
+
+    
     // Uso del id modal, donde se le agrega la class modal--show
     modal.classList.add('modal--show')
-        
+    const movieId = movieCard.getAttribute('data-id')
     
-    // Creacion del select en el DOM
-    const select = createSelect(movie);
-    document.getElementById('select').innerHTML = select;
 
-    const ticketPriceElement = document.getElementById('price');
-    const ticketType = document.getElementById('ticketType');
-    const increment = document.getElementById('increment');
-    const decrement = document.getElementById('decrement');
-    const ticketQuantity = document.getElementById('quantity');
-    const subtotalElement = document.getElementById('subtotal');
+    const movie = await getMovieById( movieId );
+    const movieTrailer = await getMovieTrailer( movieId );
     
-    const updateTicketPrice = () => {
-        let selected = ticketType.value;
-        const price  = pricesObject[ selected ];
-        ticketPriceElement.textContent = `Precio: $${ price }`;
-    }
-        
-    const updateSubtotal = () => {
-        let selected = ticketType.value;
-        const price  = pricesObject[ selected ];
-        const quantity = ticketQuantity.value;
-        const subtotal = price * quantity;
-        subtotalElement.innerHTML = `Subtotal: $${ subtotal }`;    
-    }
+    const credits = await getMovieCredits( movieId );
 
-    // Este eventListener escucha el cambio dentro del select, y ejecuta las dos funciones de arriba
-    ticketType.addEventListener('change', () => {
-        updateTicketPrice();
-        updateSubtotal();
-    });
-    // Este eventListener ejecuta la funcion al momento de que se cargar el elemento, para que no se muestre un campo vacío en el DOM al momento de abrir el modal
-    ticketType.addEventListener('load', updateTicketPrice());
-    
-    // Boton para aumentar la cantidad de tickets
-    increment.addEventListener('click', () => {
-        ticketQuantity.value = Number( ticketQuantity.value ) + 1;
-        updateSubtotal();
-    });
-        
-    // Boton para restar la cantidad de tickets
-    decrement.addEventListener('click', () => {
-        if (ticketQuantity.value > 0) {
-            ticketQuantity.value = Number( ticketQuantity.value ) - 1;
-            updateSubtotal();
+    const crew = credits.crew
+
+    let director = '';
+    for (let i = 0; i < crew.length; i++) {
+        if ( crew[i].job === 'Director') {
+            director = crew[i].name
         }
-    })  
+    }
+    
+    
+    
 
+
+
+
+    
+    
+    const protagonists = credits.cast.filter( member => member.known_for_department === 'Acting').slice(0, 4)
+    
+    const certification = await getCertification(movieId)
+
+    
+
+    const releaseDate = movie.release_date;
+
+    let date = new Date( releaseDate );
+    let formattedDate = date.toLocaleDateString();
+
+    let runtime = movie.runtime
+    let hours = Math.floor(runtime / 60)
+    let minutes = runtime % 60;
+    let formattedRuntime = `${hours}h ${minutes}min`
+
+    
+    // // Creacion del select en el DOM
+    // const select = createSelect(movie);
+    // document.getElementById('select').innerHTML = select;
+
+    // const ticketPriceElement = document.getElementById('price');
+    // const ticketType = document.getElementById('ticketType');
+    // const increment = document.getElementById('increment');
+    // const decrement = document.getElementById('decrement');
+    // const ticketQuantity = document.getElementById('quantity');
+    // const subtotalElement = document.getElementById('subtotal');
+    
+
+
+
+
+    // const updateTicketPrice = () => {
+    //     let selected = ticketType.value;
+    //     const price  = pricesObject[ selected ];
+    //     ticketPriceElement.textContent = `Precio: $${ price }`;
+    // }
+        
+    // const updateSubtotal = () => {
+    //     let selected = ticketType.value;
+    //     const price  = pricesObject[ selected ];
+    //     const quantity = ticketQuantity.value;
+    //     const subtotal = price * quantity;
+    //     subtotalElement.innerHTML = `Subtotal: $${ subtotal }`;    
+    // }
+
+    // // Este eventListener escucha el cambio dentro del select, y ejecuta las dos funciones de arriba
+    // ticketType.addEventListener('change', () => {
+    //     updateTicketPrice();
+    //     updateSubtotal();
+    // });
+    // // Este eventListener ejecuta la funcion al momento de que se cargar el elemento, para que no se muestre un campo vacío en el DOM al momento de abrir el modal
+    // ticketType.addEventListener('load', updateTicketPrice());
+    
+    // // Boton para aumentar la cantidad de tickets
+    // increment.addEventListener('click', () => {
+    //     ticketQuantity.value = Number( ticketQuantity.value ) + 1;
+    //     updateSubtotal();
+    // });
+        
+    // // Boton para restar la cantidad de tickets
+    // decrement.addEventListener('click', () => {
+    //     if (ticketQuantity.value > 0) {
+    //         ticketQuantity.value = Number( ticketQuantity.value ) - 1;
+    //         updateSubtotal();
+    //     }
+    // })  
+
+
+    
     // Genera el lado derecho del modal, la información de la pelicula, con los datos provenientes del array de peliculas
-    const modalInfo = document.querySelector('.modal__info');
-    modalInfo.innerHTML = `
-        <img src=${movie.url} alt="Poster de ${movie.title}" class="modal__image"/>
-        <h2 class='modal__title'>${movie.title}</h2>
-        <p class='modal__data'>Fecha de estreno: <span>${movie.release}</span></p>
-        <p class='modal__data'>Formato: <span>${movie.format}</span></p>
-        <p class='modal__data'>Género: <span>${movie.genre}</span></p>
-        <p class='modal__data'>Restricción: <span>${movie.restriction}</span></p>
-        <p class='modal__data'>Duración: <span>${movie.duration}min</span></p>
-        <p class='modal__data'>Idioma: <span>${movie.lang}</span></p>
-        <h2 class='modal__subtitle'>Sinopsis</h2>
-        <p class='modal__description'>${movie.description}</p>
-        <h2 class='modal__subtitle'>Trailer</h2>
-        <iframe class='modal__trailer' src='https://www.youtube.com/embed/${movie.trailerURL}'></iframe>
+    const movieElement = document.querySelector('.movie');
+    movieElement.innerHTML = `
+        <div class='movie__header'>
+            <img src=${IMAGE_URL + movie.backdrop_path} alt="Poster de ${movie.title}" class="movie__header--image"/>
+            <div class='movie__header--content'>
+                <h2 class='movie__header--title'>${movie.title}</h2>
+                <div class='movie__header--wrapper'>
+                    <p class='movie__header--data movie__header--certification'>
+                        ${ certification || 'Desconocido' }
+                    </p>
+                    <p class='movie__header--data'>
+                        ${ formattedDate }
+                    </p>
+                    <p class='movie__header--data'>
+                        ${ formattedRuntime }
+                    </p>
+                    <p class='movie__header--data movie__header--genres'>
+                        ${ movie.genres.map( e => 
+                            `<span class='movie__header--genre'>${ e.name }</span>`
+                            ).join(',')
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class='movie__body'>
+            <p class='movie__body--text'>Director:
+            <span class='movie__body--textHighlighted'>${director}</span></p>
+            <p class='movie__body--text'>Protagonizada por: ${
+                protagonists.map(
+                    protagonist => `<span class='movie__body--textHighlighted'>${protagonist.name}</span>`
+                ).join(', ')
+            }</p>
+            
+            <h2 class='movie__body--title'>Sinopsis</h2>
+            <p class='movie__body--text'>${movie.overview}</p>
+            <h2 class='movie__body--title'>Trailer</h2>
+            <iframe 
+                src="https://www.youtube.com/embed/${movieTrailer}" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen 
+                class='movie__body--trailer'
+            >
+            </iframe>
+        </div>
     `
 
 
@@ -207,8 +348,59 @@ const createModal = ( movie ) => {
     })
 }
 
-// Genera el modal al hacer click en cualquier tarjeta
-movies.forEach( movie => {
-    var movieElement = document.getElementById(movie.id);
-    movieElement.addEventListener('click', ()  => createModal(movie) );
-});
+
+
+
+
+// Función que calcula la cantidad de asientos seleccionados
+function calcularCantidadAsientos() {
+    // Obtener todos los botones de asientos
+    const asientos = document.querySelectorAll(".seat");
+    // Contador de asientos seleccionados
+    let cantidad = 0;
+
+    const valor = 1500;
+
+
+
+    // Recorrer cada botón de asiento
+    asientos.forEach(function(asiento) {
+      // Si el botón tiene la clase "seleccionado", incrementar el contador
+      if (asiento.classList.contains("selected")) {
+        cantidad++;
+      }
+    });
+    
+    // Habilitar o deshabilitar el botón de compra en función de la cantidad de entradas seleccionadas
+    if (cantidad > 0) {
+      document.querySelector("button[type=submit]").disabled = false;
+    } else {
+      document.querySelector("button[type=submit]").disabled = true;
+    }
+
+    let entradas =  document.getElementById('entradas');
+
+
+    let valorTotal = cantidad * valor;
+
+    const subtotal = document.getElementById('subtotal');
+
+    entradas.innerHTML = `Cantidad de entradas: ${cantidad}`
+    subtotal.innerHTML = `Subtotal: $${valorTotal}`
+  }
+
+
+  
+
+
+  // Agregar eventos a los botones de asiento
+  const asientos = document.querySelectorAll(".seat");
+  asientos.forEach(function(asiento) {
+    asiento.addEventListener("click", function() {
+      // Añadir o quitar la clase "seleccionado" al hacer clic en el botón
+      asiento.classList.toggle("selected");
+      // Llamar a la función que calcula la cantidad de asientos seleccionados
+      calcularCantidadAsientos();
+    });
+  });
+
