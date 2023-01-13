@@ -115,7 +115,7 @@ const getMovieCredits = async( movieId ) => {
 
 
 const fetchMovies = async () => {
-    const endpoint = `${API_URL}/now_playing?api_key=${API_KEY}&language=es-MX`
+    const endpoint = `${API_URL}/upcoming?api_key=${API_KEY}&language=es-MX`
     try {
         const data = await useFetch( endpoint );
         return movies = data.results.slice(0, 18);
@@ -404,3 +404,24 @@ function calcularCantidadAsientos() {
     });
   });
 
+
+
+
+let upcoming = false;
+
+function switchMovies() {
+  upcoming = !upcoming;
+}
+
+document.getElementById("switch").addEventListener("click", switchMovies);
+
+function getMovies() {
+  let endpoint = upcoming ? "upcoming" : "now_playing";
+  fetch(`https://api.themoviedb.org/3/movie/${endpoint}?api_key=${API_KEY}`)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data.results);
+    });
+}
+
+document.getElementById("switch").addEventListener("click", getMovies);

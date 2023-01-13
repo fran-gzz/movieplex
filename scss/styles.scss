@@ -71,8 +71,6 @@
         display: grid;
         grid-template-columns:  .5fr 2fr;
         grid-template-areas: 'tickets info';
-        width: 100%;
-
     }
     
     
@@ -94,11 +92,9 @@
     &__header {
         position: relative;
         &--content {
-            width: 100%;
             padding: 0 1.5rem;
             position: absolute;
             bottom: 0;
-            height: 100%;
             background: rgb( 17, 17, 17 );
             background: 
             linear-gradient(
@@ -106,11 +102,8 @@
                 rgba( 17, 17, 17, 1 ) 10%, 
                 rgba( 17, 17, 17, 0 ) 100% 
             );
-            display: flex;
-            flex-direction: column;
-            justify-content: end;
-            align-items: flex-start;
-    
+            @include size; // por default, 100% x 100%
+            @include flex( column, end, flex-start );
         }
         &--image{
             object-fit: cover;
@@ -145,9 +138,8 @@
             align-items: center;
             &::before {
                 content: '';
-                width: 2px;
                 position: absolute;
-                height: 18px;
+                @include size( 18px, 2px );
                 background-color: currentColor;
             }
         }
@@ -173,33 +165,23 @@
             color: $color__white--1;
         }
         &--trailer{
-            width: 560px;
-            height: 315px;
+            @include size( 315px, 560px );
         }
     }
 }
 
 .tickets {
     grid-area: tickets;
-    background-color: $color__black--2;
-    width: 100%;
-    
+    background-color: $color__black--1;
+    padding: 1rem;    
     &__container {
         position: fixed;
-        
+        @include flex( column, center, flex-start );
     }
-    
-    
-
     &__subtotal {
-        background-color: $color__black--2;
-        color: $color__white--1;
-        
+        color: $color__white--1;   
         font-size: 1.6em;
         font-weight: 600;
-        padding: 1rem;
-        
-        border-radius: .2rem;
     }
 }
 
@@ -214,114 +196,47 @@
 
 
 #login-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: flex-start;
+    @include flex( column, start, flex-start );
     color: $color__white--3;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   .seat {
-    background-color: #444451;
-    height: 12px;
-    width: 15px;
+    background-color: #444;
     margin: 3px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border: none;
+    @include size( 12px, 15px );
     &.selected {
-        background-color: #6feaf6;
-      }
-  }
+        background-color: $color__primary;
+        box-shadow: 0 3px 10px #59189a77;
+    }
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+    }
+    &:nth-of-type(2) { margin-right: 18px; }
+    &:nth-last-of-type(2) { margin-left: 18px; }
+}
   
   
   
-  .seat:nth-of-type(2) {
-    margin-right: 18px;
-  }
-  
-  .seat:nth-last-of-type(2) {
-    margin-left: 18px;
-  }
-  
-  .seat:not(.occupied):hover {
-    cursor: pointer;
-    transform: scale(1.2);
-  }
-  
-  .showcase .seat:not(.occupied):hover {
-    cursor: default;
-    transform: scale(1);
-  }
-  
-  .showcase {
-    background-color: rgba(0, 0, 0, 0.1);
-    padding: 5px 10px;
-    border-radius: 5px;
-    color: #777;
-    list-style-type: none;
+.row {
     display: flex;
-    justify-content: space-between;
-  }
+}
   
-  .showcase li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 10px;
-  }
-  
-  .showcase li small {
-    margin-left: 10px;
-  }
-  
-  .row {
-    display: flex;
-  }
-  
-  .screen {
-    
+.screen {
     position: relative;
     background-color: #fff;
-    height: 70px;
-    width: 100%;
     margin-bottom: 20px;
-    
-    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.75);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    box-shadow: 0 3px 10px rgba(255, 255, 255, .4);
+    @include size(70px, 100%);
+    @include flex();
     &::after {
-
         content: 'Pantalla';
         position: relative;
         font-size: 1.2em;
     }
-  }
+}
