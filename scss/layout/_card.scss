@@ -1,6 +1,7 @@
 .card {
     @include transition;
     cursor: pointer;
+    animation: fadeIn 3s;
     &:hover {
         transform: scale(105%);
     }

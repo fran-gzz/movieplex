@@ -7,6 +7,9 @@
 
     <!-- Estilos de usuario -->
     <link rel="stylesheet" href="./css/styles.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
     <title>Movieplex Cinemas</title>
 </head>
 <body>
@@ -35,15 +38,16 @@
                     <a class='navigator__item' href='./index.html'> Inicio </a>
                 </li>
                 <li>
-                    <a class='navigator__item' href='./pages/blog.html'> Promociones </a>
+                    <a class='navigator__item' href='./pages/upcoming.html'> Proximamente </a>
                 </li>
-                <li>
-                    <a class='navigator__item' href='./pages/nosotros.html'> Complejos </a>
-                </li>
-                <li>
-                    <a class='navigator__item navigator__item--cta' id='login-button' href='./pages/login.html'> Iniciar Sesión </a>
+                <li id="navigatorItem">
+                    <a class='navigator__item' href='./pages/cart.html'> Mis compras </a>
                 </li>
             </ul>
+            <div style="display: flex; gap: 15px;">
+                <p class="navigator__item" id="saludoUsuario">Hola</p>
+                <a class='navigator__item navigator__item--cta' id='login-button' href='./pages/login.html'> Iniciar Sesión </a>
+            </div>
         </nav>
     </header>
     
@@ -56,24 +60,12 @@
         <div class="hero__background"></div>
     </section> 
 -->
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-    <button id="switch">Switch</button>
-
-
-
-
-
     
+    <div id="loading" class="animate__animated animate__pulse animate__infinite">
+        Cargando... 
+    </div>
     <section class="section">
+        
         <h2 class="section__title">Cartelera</h2>
         <div class="section__grid" id="grid"> 
             <!--Datos inyectados en javascript-->
@@ -85,65 +77,62 @@
             <div class="modal__body">
                 <article class="tickets">
                     <div class="tickets__container">
-                        <div id="asientos">
-                            <div class="screen"></div>
-                            <div class="row">
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
+                        <div class="tickets__seats">
+                            <span class="tickets__seats--screen"></span>
+                            <div class="tickets__seats--row">
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
                             </div>
-                            <div class="row">
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
+                            <div class="tickets__seats--row">
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
                             </div>
-                            <div class="row">
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
+                            <div class="tickets__seats--row">
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
                             </div>
-                            <div class="row">
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
+                            <div class="tickets__seats--row">
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
                             </div>
-                            <div class="row">
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
-                                <button class="seat"></button>
+                            <div class="tickets__seats--row">
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
+                                <button class="tickets__seats--seat"></button>
                             </div>
                         </div>
-
-                        <p id="entradas">Cantidad de entradas: 0</p>
-                        <p class="tickets__subtotal"  id="subtotal"> Subtotal: $0</p>
-
-                        <button type="submit" class="button button--primary" disabled>Comprar</button>
-
+                        <p id="entradas" class="tickets__text">Cantidad de entradas: 0</p>
+                        <p class="tickets__text" id="subtotal"> Subtotal: $0</p>
+                        <button type="submit" class="button" id='botonCompra' disabled>Comprar</button>
                     </div>
                 </article>
                 <div class="movie">
@@ -175,6 +164,8 @@
             </ul>
         </nav>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="./js/main.js"></script>
 

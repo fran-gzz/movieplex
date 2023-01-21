@@ -15,7 +15,6 @@
 .section { 
     @include container(1200px);
     padding: 1rem;
-    min-height: 100vh;
     padding-top: 120px;
     
     &__title {
@@ -70,10 +69,8 @@
         overflow-y: auto;
         display: grid;
         grid-template-columns:  .5fr 2fr;
-        grid-template-areas: 'tickets info';
+        grid-template-areas: 'tickets movie';
     }
-    
-    
     &__close {
         cursor: pointer;
         background-color: unset;
@@ -88,7 +85,7 @@
 
 }
 .movie {
-    grid-area: info;
+    grid-area: movie;
     &__header {
         position: relative;
         &--content {
@@ -129,7 +126,8 @@
         &--certification {
             text-align: center;
             min-width: 4rem;
-            border: 2px solid currentColor;
+            border: 2px solid $color__white--1;
+            color: $color__white--1;
             padding: .2rem .6rem;
         }
         &--genres {
@@ -173,7 +171,7 @@
 .tickets {
     grid-area: tickets;
     background-color: $color__black--1;
-    padding: 1rem;    
+    padding: 1rem;
     &__container {
         position: fixed;
         @include flex( column, center, flex-start );
@@ -182,6 +180,53 @@
         color: $color__white--1;   
         font-size: 1.6em;
         font-weight: 600;
+    }
+    &__text {
+        color: $color__white--2;
+        font-size: 1em;
+        &#subtotal {
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+    }
+    &__seats { 
+        margin-bottom: 20px;
+        &--row {
+            @include flex(row);
+        }
+        &--screen {
+            position: relative;
+            background-color: #fff;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(255, 255, 255, .4);
+            @include size(70px, 100%);
+            @include flex();
+            &::after {
+                content: 'Pantalla';
+                position: relative;
+                font-size: 1.2em;
+            }
+        }
+        &--seat{
+            background-color: #444;
+            margin: 3px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all .1s ease-in-out;
+            @include size( 12px, 15px );
+            &.selected {
+                background-color: $color__white--1;
+            }
+            &:hover {
+                transform: scale(1.2);
+                background-color: $color__primary;
+                box-shadow: 0 3px 10px #59189a77;
+            }
+            &:nth-of-type(2) { margin-right: 18px; }
+            &:nth-last-of-type(2) { margin-left: 18px; }
+        }
     }
 }
 
@@ -194,49 +239,36 @@
     z-index: 98;
 }
 
-
-#login-form {
+.form {
     @include flex( column, start, flex-start );
     color: $color__white--3;
+    input {
+        padding: .2rem 1rem;
+        margin: 5px 0 15px 0;
+    }
 }
 
 
-  
-  .seat {
-    background-color: #444;
-    margin: 3px;
+.table {
+    background-color: #333;
+    color: $color__white--1;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    border: none;
-    @include size( 12px, 15px );
-    &.selected {
-        background-color: $color__primary;
-        box-shadow: 0 3px 10px #59189a77;
+    & tbody {
+        color: $color__white--2;
     }
-    &:hover {
-        cursor: pointer;
-        transform: scale(1.2);
-    }
-    &:nth-of-type(2) { margin-right: 18px; }
-    &:nth-last-of-type(2) { margin-left: 18px; }
-}
-  
-  
-  
-.row {
+}    
+
+
+
+
+#loading {
+    margin: 0 auto;
+    max-width: 1200px;
+    font-size: 2em;
+    color: $color__white--1;
     display: flex;
-}
-  
-.screen {
-    position: relative;
-    background-color: #fff;
-    margin-bottom: 20px;
-    box-shadow: 0 3px 10px rgba(255, 255, 255, .4);
-    @include size(70px, 100%);
-    @include flex();
-    &::after {
-        content: 'Pantalla';
-        position: relative;
-        font-size: 1.2em;
-    }
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }

@@ -30,22 +30,25 @@
     border: none; }
 
 .button {
-  background-color: #fff;
+  background-color: #5a189a;
   border: none;
   padding: .5rem;
   cursor: pointer;
   border-radius: .2rem;
   min-width: 2rem;
+  color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out; }
-  .button--primary {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    background-color: #5a189a;
-    color: #fff; }
-    .button--primary:hover {
-      background-color: #3c096c !important;
-      color: #fff !important; }
   .button:hover {
-    background-color: #eee; }
+    background-color: #3c096c;
+    color: #fff; }
+  .button:disabled {
+    cursor: default;
+    background-color: #EFEFEF4D;
+    color: #EFEFEF8D; }
+    .button:disabled:hover {
+      background-color: #EFEFEF4D;
+      color: #EFEFEF8D; }
 
 #ticket-type {
   max-width: 60px;
@@ -105,11 +108,13 @@ ul {
     display: flex;
     flex-direction: row;
     justify-content: unset;
-    align-items: center; }
+    align-items: center;
+    margin: 0; }
   .navigator__item {
     transition: all 0.2s ease-in-out;
     position: relative;
-    padding: .6rem; }
+    padding: .6rem;
+    margin: 0 !important; }
     .navigator__item::after {
       content: '';
       background-color: #fff;
@@ -181,7 +186,8 @@ ul {
 
 .card {
   transition: all 0.2s ease-in-out;
-  cursor: pointer; }
+  cursor: pointer;
+  animation: fadeIn 3s; }
   .card:hover {
     transform: scale(105%); }
   .card__image {
@@ -216,7 +222,6 @@ ul {
   width: 100%;
   margin: 0 auto;
   padding: 1rem;
-  min-height: 100vh;
   padding-top: 120px; }
   .section__title {
     font-size: 2em;
@@ -263,7 +268,7 @@ ul {
     overflow-y: auto;
     display: grid;
     grid-template-columns: .5fr 2fr;
-    grid-template-areas: 'tickets info'; }
+    grid-template-areas: 'tickets movie'; }
   .modal__close {
     cursor: pointer;
     background-color: unset;
@@ -275,7 +280,7 @@ ul {
     z-index: 50; }
 
 .movie {
-  grid-area: info; }
+  grid-area: movie; }
   .movie__header {
     position: relative; }
     .movie__header--content {
@@ -311,7 +316,8 @@ ul {
     .movie__header--certification {
       text-align: center;
       min-width: 4rem;
-      border: 2px solid currentColor;
+      border: 2px solid #fff;
+      color: #fff;
       padding: .2rem .6rem; }
     .movie__header--genres {
       position: relative;
@@ -356,6 +362,54 @@ ul {
     color: #fff;
     font-size: 1.6em;
     font-weight: 600; }
+  .tickets__text {
+    color: #eee;
+    font-size: 1em; }
+    .tickets__text#subtotal {
+      margin-bottom: 20px;
+      font-size: 1.8em; }
+  .tickets__seats {
+    margin-bottom: 20px; }
+    .tickets__seats--row {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center; }
+    .tickets__seats--screen {
+      position: relative;
+      background-color: #fff;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 10px rgba(255, 255, 255, 0.4);
+      height: 70px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; }
+      .tickets__seats--screen::after {
+        content: 'Pantalla';
+        position: relative;
+        font-size: 1.2em; }
+    .tickets__seats--seat {
+      background-color: #444;
+      margin: 3px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: all .1s ease-in-out;
+      height: 12px;
+      width: 15px; }
+      .tickets__seats--seat.selected {
+        background-color: #fff; }
+      .tickets__seats--seat:hover {
+        transform: scale(1.2);
+        background-color: #5a189a;
+        box-shadow: 0 3px 10px #59189a77; }
+      .tickets__seats--seat:nth-of-type(2) {
+        margin-right: 18px; }
+      .tickets__seats--seat:nth-last-of-type(2) {
+        margin-left: 18px; }
 
 .modal--show {
   opacity: 1;
@@ -365,47 +419,30 @@ ul {
   --transition: transform .8s .8s;
   z-index: 98; }
 
-#login-form {
+.form {
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: flex-start;
   color: #aaa; }
+  .form input {
+    padding: .2rem 1rem;
+    margin: 5px 0 15px 0; }
 
-.seat {
-  background-color: #444;
-  margin: 3px;
+.table {
+  background-color: #333;
+  color: #fff;
   border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border: none;
-  height: 12px;
-  width: 15px; }
-  .seat.selected {
-    background-color: #5a189a;
-    box-shadow: 0 3px 10px #59189a77; }
-  .seat:hover {
-    cursor: pointer;
-    transform: scale(1.2); }
-  .seat:nth-of-type(2) {
-    margin-right: 18px; }
-  .seat:nth-last-of-type(2) {
-    margin-left: 18px; }
+  border-top-right-radius: 10px; }
+  .table tbody {
+    color: #eee; }
 
-.row {
-  display: flex; }
-
-.screen {
-  position: relative;
-  background-color: #fff;
-  margin-bottom: 20px;
-  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.4);
-  height: 70px;
-  width: 100%;
+#loading {
+  margin: 0 auto;
+  max-width: 1200px;
+  font-size: 2em;
+  color: #fff;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-items: center; }
-  .screen::after {
-    content: 'Pantalla';
-    position: relative;
-    font-size: 1.2em; }
+  height: 100vh; }

@@ -48,25 +48,30 @@
     }
 }
 .button {
-    background-color: $color__white--1;
+    background-color: $color__primary;
     border: none;
     padding: .5rem;
     cursor: pointer;
     border-radius: .2rem;
     min-width: 2rem;
+    color: $color__white--1;
+    box-shadow: 0px 0px 10px rgba($color: #000000, $alpha: .2);
     @include transition();
-    &--primary {
-        box-shadow: 0px 0px 10px rgba($color: #000000, $alpha: .2);
-        background-color: $color__primary;
+    &:hover {    
+        background-color: $color__primary--darker;
         color: $color__white--1;
+    }
+    
+    &:disabled {
+        cursor: default;
+        background-color: #EFEFEF4D;
+        color: #EFEFEF8D;
         &:hover {
-            background-color: $color__primary--darker!important;
-            color: $color__white--1!important;
+            background-color: #EFEFEF4D;
+            color: #EFEFEF8D;
         }
     }
-    &:hover {
-        background-color: $color__white--2;
-    }
+    
 }
 
 #ticket-type {
@@ -74,3 +79,5 @@
     height: 2rem;
     padding: 0 .2rem;
 }
+
+

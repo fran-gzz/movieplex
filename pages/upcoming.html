@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Estilos de usuario -->
+    <link rel="stylesheet" href="../css/styles.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <title>Movieplex Cinemas</title>
+</head>
+<body>
+    <header id='navbar'>
+        <nav class='container navigator'>
+            <!--Burguer Menu-->
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+                <svg
+                xmlns="http://www.w3.org/2000/svg" 
+                x="0px" y="0px" 
+                width="40" height="40"
+                viewBox="0 0 30 30"
+                style=" fill:#ffffff;"
+            >
+                <path d="M 3 7 A 1.0001 1.0001 0 1 0 3 9 L 27 9 A 1.0001 1.0001 0 1 0 27 7 L 3 7 z M 3 14 A 1.0001 1.0001 0 1 0 3 16 L 27 16 A 1.0001 1.0001 0 1 0 27 14 L 3 14 z M 3 21 A 1.0001 1.0001 0 1 0 3 23 L 27 23 A 1.0001 1.0001 0 1 0 27 21 L 3 21 z"></path>
+                </svg>
+            </label>            
+
+            <a href='../index.html' class='logo'>
+                <strong>movieplex</strong>
+            </a>
+
+            <ul class='navigator__wrapper'>
+                <li>
+                    <a class='navigator__item' href='../index.html'> Inicio </a>
+                </li>
+                <li>
+                    <a class='navigator__item' href='./upcoming.html'> Proximamente </a>
+                </li>
+                <li id="navigatorItem">
+                    <a class='navigator__item' href='./cart.html'> Mis compras </a>
+                </li>
+            </ul>
+            <div style="display: flex; gap: 15px;">
+                <p class="navigator__item" id="saludoUsuario">Hola</p>
+                <a class='navigator__item navigator__item--cta' id='login-button' href='./login.html'> Iniciar Sesión </a>
+            </div>
+        </nav>
+    </header>
+    
+
+<!--     
+    <section class="hero">
+        <article class="hero__content">
+            <!- <h1 class="hero__title">Acá habrá un slider...</h1> ->
+        </article>
+        <div class="hero__background"></div>
+    </section> 
+-->
+    
+    <div id="loading" class="animate__animated animate__pulse animate__infinite">
+        Cargando... 
+    </div>
+    <section class="section">
+        <h2 class="section__title">Proximamente</h2>
+        <div class="section__grid" id="grid"> 
+            <!--Datos inyectados en javascript-->
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <nav class="footer__container">
+            <a href="./index.html">Logo</a>
+            <ul class="footer__nav">
+                <li>
+                    <a href="#">Facebook</a>
+                
+                </li>
+                <li>
+                    <a href="#">Instagram</a>
+                </li>
+                <li>
+                    <a href="#">Linkedin</a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
+
+    <script src="../js/upcoming.js"></script>
+
+</body>
+</html>

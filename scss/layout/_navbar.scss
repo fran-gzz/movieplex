@@ -22,11 +22,13 @@
     &__wrapper {
         gap: $gap;
         @include flex(row, unset, center);
+        margin: 0;
     }
     &__item {
         @include transition;
         position: relative;
         padding: .6rem;
+        margin: 0!important;
         &::after {
             content: '';
             background-color: $color__white--1;
