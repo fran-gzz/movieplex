@@ -14,9 +14,6 @@
 
 .section { 
     @include container(1200px);
-    padding: 1rem;
-    padding-top: 120px;
-    
     &__title {
         font-size: 2em;
         color: $color__white--2;

@@ -240,11 +240,20 @@ const mostrarConfirmacion = () => {
 
 const main = async () => {
 
-    const billboard = document.getElementById( 'grid' )
     const movies    = await getMovies();
 
+    // Hero - Banner y titulo
+    const peli = movies[0];
+    const posterUrl = `https://image.tmdb.org/t/p/original${peli.backdrop_path}`;
+
+    document.getElementById( 'background' ).style.backgroundImage = `url('${posterUrl}')`;
+    document.getElementById( 'titulo' ).innerHTML = `¡Ya está aquí ${ peli.title }!`;
+    
+    
+    // Grilla de películas
+    const grilla = document.getElementById( 'grid' );
     movies.forEach( movie => {
-        billboard.innerHTML += `
+        grilla.innerHTML += `
          <div class="card" data-id='${movie.id}'>
              <img src=${ IMAGE_URL + movie.poster_path} alt="Poster de ${movie.title}" class="card__image">
              <h2 class='card__title'>${movie.title}</h2>
@@ -254,6 +263,7 @@ const main = async () => {
     const movieCards = document.querySelectorAll('.card')
     movieCards.forEach( movieCard => movieCard.addEventListener('click', () => createModal( movieCard )))
 
+    // Boton de compra
     comprar();
 }
 
