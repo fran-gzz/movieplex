@@ -31,6 +31,27 @@ class Sesion {
         let email    = document.getElementById("email").value;
         let password = document.getElementById("password").value;
 
+
+        // Verifica que los campos no esten vacios
+        if (!nombre || !email || !password) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Por favor, rellene todos los campos'
+            });
+            return;
+        }
+        // Verifica que la contraseña tenga al menos 8 caracteres
+        if (password.length < 8) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'La contraseña debe tener al menos 8 caracteres'
+            });
+            return;
+          }
+
+
         // Crea un nuevo usuario usando los valores
         let nuevoUsuario    = new Usuario( nombre, email, password );
         let registroExitoso = this.registroExitoso( nuevoUsuario );
