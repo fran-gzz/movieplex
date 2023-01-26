@@ -1,3 +1,8 @@
+.padding {
+    padding: 100px 0;
+}
+
+
 /* Containers */
 
 .container {
@@ -13,24 +18,6 @@
         font-size: 1.4em;
     }
 }
-/* Button */
-// .button {
-//     background-color: inherit;
-//     border: none;
-//     border-radius: $radius;    
-//     cursor: pointer;
-//     min-width: 150px;
-//     padding: 0.5rem;
-//     @include size( 5rem, 100% );
-//     @include transition;
-//     &--primary {
-//         background-color: $color__primary;
-//         color: $color__white--1;
-//         &:hover {
-//             background-color: $color__primary--darker;
-//         }
-//     }
-// }
 
 
 .button__container {

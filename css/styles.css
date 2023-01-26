@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Poppins:wght@200;300;400;600;700;800;900&display=swap");
+.padding {
+  padding: 100px 0; }
+
 /* Containers */
 .container {
   padding: 0 1rem;
@@ -15,7 +18,6 @@
     .logo {
       font-size: 1.4em; } }
 
-/* Button */
 .button__container {
   display: flex;
   flex-direction: row;
